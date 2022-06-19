@@ -1,0 +1,10 @@
+^C:\UPBWORK\TEST\FACTORIZATION\TEST\UNIT\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\819E3CDA8DEC273B56FCD51898D9A1F6\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/upbWork/test/Factorization/test/unit/build/_deps/googletest-subbuild -BC:/upbWork/test/Factorization/test/unit/build/_deps/googletest-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/upbWork/test/Factorization/test/unit/build/_deps/googletest-subbuild/googletest-populate.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
