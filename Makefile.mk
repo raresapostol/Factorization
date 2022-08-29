@@ -17,6 +17,6 @@ else
 	TARGET_EXTENSION=out
 endif
 
-CC = g++
+CC = gcc
 
 CFLAGS += -g -O3 

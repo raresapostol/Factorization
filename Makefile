@@ -1,5 +1,6 @@
 include Makefile.mk
 
+
 BUILD_NAME = main
 
 PATHB = build/
@@ -11,13 +12,13 @@ BUILD_DIRS = $(dir $(BUILD_OBJS))
 
 all: clean
 all: $(PATHB)
-all: $(PATHB)$(BUILD_NAME).exe
+#all: $(PATHB)$(BUILD_NAME).exe
 
 # Create build directory
 $(PATHB):
 	$(MKDIR) $(PATHB)
 	#$(MKDIR) $(BUILD_DIRS)
-	g++ -std=c99 -Wall src/main.c
+	g++ -std=c99 -Wall src/main.c -o out.exe
 
 # Build object
 $(PATHB)%.o: $(PATHS)%.c

@@ -1,5 +1,6 @@
 #include "../include/main.h"
 #include <cstddef>
+#include <omp.h>
 
 
 static ulli modularPow(ulli a, ulli b, const ulli mod) { 
@@ -69,7 +70,9 @@ static int isPrime(ulli inputNumber) { // Pollard Rho algorithm
 
 ulli newFactor(const ulli inputNumber) {
 	size_t a = -1, b = 2;
-	ulli c, d = 1 + rand(), e, f;
+	ulli c;
+	ulli d = 1 + rand();
+	ulli e, f;
 
 	c = d %= inputNumber;
 	e = inputNumber;
@@ -88,6 +91,8 @@ ulli newFactor(const ulli inputNumber) {
 // fill the given array with prime factors of n, result will be zero terminated.
 ulli* factor(ulli inputNumber, ulli* array, bool prime) {
 	ulli a, b; size_t s;
+	#pragma omp parallel 
+	{
 	while (inputNumber > 1) {
 		if (!prime) { // Find all factors
 
@@ -129,18 +134,20 @@ ulli* factor(ulli inputNumber, ulli* array, bool prime) {
 						*array++ = inputNumber, inputNumber = 1;
 					else {
 						a = newFactor(inputNumber); // can't be called with a prime - seg fault
+						#pragma omp critical
 						array = factor(a, array, true);
 						inputNumber /= a;
 					}
 				}
 			}
 			else {
-				while (!(inputNumber & 1)) {
+				while (!(inputNumber & 1)) { // Based on LSB
 					*array++ = 2;
 					inputNumber >>= 1;
 				}
 			}
 		}
+	}
 	}
 
 	*array = 0;
