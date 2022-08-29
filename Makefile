@@ -18,7 +18,7 @@ all: $(PATHB)
 $(PATHB):
 	$(MKDIR) $(PATHB)
 	#$(MKDIR) $(BUILD_DIRS)
-	g++ -std=c99 -Wall src/main.c -o out.exe
+	g++ -std=c99 -Wall src/*.c -o out.exe
 
 # Build object
 $(PATHB)%.o: $(PATHS)%.c

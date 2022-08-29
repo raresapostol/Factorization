@@ -13,8 +13,10 @@
 
 #include <stdlib.h>
 #include <chrono>
-
 #include <iostream>
+
+#include <cstddef>
+#include <omp.h>
 
 typedef unsigned long long int ulli;
 
